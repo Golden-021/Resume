@@ -63,3 +63,11 @@ nav a {
   border-radius: 5px;
   margin-top: 20px;
 }
+
+footer {
+  background-color: #222;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
