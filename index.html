@@ -2,28 +2,40 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>John Doe - Home</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="hero" style="background-image: url('assets/background.jpg')">
+  <nav class="topnav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <div class="dropdown">
+      <button class="dropbtn">Services</button>
+      <div class="dropdown-content">
+        <a href="services.html#leadgen">Lead Generation</a>
+        <a href="services.html#analytics">Analytics</a>
+        <a href="services.html#research">Market Research</a>
+      </div>
+    </div>
+    <a href="resume.html">Resume</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <header class="hero" id="dynamic-hero">
     <div class="overlay">
       <h1>John Doe</h1>
       <p>Marketing & Demand Generation Expert</p>
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="services.html">Services</a>
-        <a href="resume.html">Resume</a>
-        <a href="contact.html">Contact</a>
-      </nav>
     </div>
   </header>
 
   <footer>
-  <p>© 2025 John Doe. All rights reserved.</p>
-</footer>
+    <p>© 2025 John Doe. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
 
   
 </body>
