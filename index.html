@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dynamic Bulb Cursor Website</title>
+  <title>Dynamic Hero + Bulb Cursor Website</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       overflow-x: hidden;
-      transition: background 2s ease;
-      cursor: none;
       background: #f0f8ff;
+      cursor: none;
+      transition: background 2s ease;
     }
 
     header {
@@ -60,18 +60,17 @@
 
     .hero {
       height: 100vh;
-      background: url('https://source.unsplash.com/random/1920x1080') center/cover no-repeat;
-      display: flex;
-       background-position: center;
-       background-size: cover;
+      background-position: center;
+      background-size: cover;
       background-repeat: no-repeat;
-      transition: background-image 1s ease;
+      display: flex;
       align-items: center;
       justify-content: center;
       color: white;
       text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
       flex-direction: column;
       text-align: center;
+      transition: background-image 1s ease;
     }
 
     .hero h1 {
@@ -165,13 +164,13 @@
   <div>My Cool Website</div>
   <nav class="navbar">
     <a href="#">Home</a>
-    <a href="https://golden-021.github.io/Resume/about.html">About</a>
+    <a href="#about">About</a>
     <div class="dropdown">
       <a href="#">Services ▾</a>
       <div class="dropdown-content">
         <a href="#">Web Design</a>
         <a href="#">Marketing</a>
-        <a href="#">SEO</a>
+        <a href="#">Lead Nurturing</a>
       </div>
     </div>
   </nav>
@@ -181,7 +180,6 @@
   <h1>Welcome to My Cool Website</h1>
   <p>Enjoy stunning visuals & awesome content!</p>
 </section>
-  
 
 <section class="section" id="about">
   <h2>About Us</h2>
@@ -192,19 +190,19 @@
   <h2>Our Services</h2>
   <div class="services">
     <div class="service-card">
-      <img src="https://source.unsplash.com/featured/?webdesign" alt="Web Design">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRR6Ao7QVKh5lwZIbWwceSiIwF8lmtEZseUg&s" alt="Web Design">
       <h3>Web Design</h3>
       <p>Creative and modern website design solutions.</p>
     </div>
     <div class="service-card">
-      <img src="https://source.unsplash.com/featured/?marketing" alt="Marketing">
+      <img src="https://www.feedough.com/wp-content/uploads/2020/08/what-is-marketing.webp" alt="Marketing">
       <h3>Marketing</h3>
       <p>Grow your business with our expert marketing strategies.</p>
     </div>
     <div class="service-card">
-      <img src="https://source.unsplash.com/featured/?seo" alt="SEO">
-      <h3>SEO</h3>
-      <p>Boost your website traffic with powerful SEO techniques.</p>
+      <img src="https://kylas.io/wp-content/uploads/2023/02/What-is-Lead-Nurturing-1-1024x576.jpg" alt="Lead Nurturing">
+      <h3>Lead Nurturing</h3>
+      <p><b>Boost Your Sales : </b>Lead with Vision, Nurture with Purpose, Inspire with Action.</p>
     </div>
   </div>
 </section>
@@ -216,6 +214,7 @@
 <!-- Bulb Cursor -->
 <div class="custom-cursor" id="cursor">💡</div>
 
+<!-- Scripts -->
 <script>
   const cursor = document.getElementById('cursor');
 
@@ -232,13 +231,10 @@
     ripple.style.left = e.clientX + 'px';
     ripple.style.top = e.clientY + 'px';
     document.body.appendChild(ripple);
-
-    setTimeout(() => {
-      ripple.remove();
-    }, 800);
+    setTimeout(() => ripple.remove(), 800);
   });
 
-  // ✨ Cursor Glow on Hover (Yellow Bulb)
+  // Cursor Glow on Hover (Yellow Bulb)
   const hoverTargets = document.querySelectorAll('a, button, .service-card, .dropdown-content a');
   hoverTargets.forEach(item => {
     item.addEventListener('mouseenter', () => {
@@ -249,15 +245,36 @@
     });
   });
 
-  // ✨ Cursor Changes to Blue Bulb while Scrolling
-  let isScrolling;
+  // Cursor Changes on Scroll (Arrow Up/Down)
+  let lastScrollTop = window.pageYOffset;
+  let scrollTimer;
   window.addEventListener('scroll', () => {
-    cursor.textContent = '↕️';
-    clearTimeout(isScrolling);
-    isScrolling = setTimeout(() => {
+    clearTimeout(scrollTimer);
+    const currentScrollTop = window.pageYOffset;
+    if (currentScrollTop > lastScrollTop) {
+      cursor.textContent = '⬇️';
+    } else if (currentScrollTop < lastScrollTop) {
+      cursor.textContent = '⬆️';
+    }
+    lastScrollTop = currentScrollTop;
+    scrollTimer = setTimeout(() => {
       cursor.textContent = '💡';
-    }, 500); // reset after 500ms of no scroll
+    }, 600);
   });
+
+  // Background Image Slider for Hero Section
+  const hero = document.querySelector('.hero');
+  const images = [
+    'https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=612x612&w=0&k=20&c=A63koPKaCyIwQWOTFBRWXj_PwCrR4cEoOw2S9Q7yVl8=',
+    'https://media.istockphoto.com/id/471926619/photo/moraine-lake-at-sunrise-banff-national-park-canada.jpg?s=612x612&w=0&k=20&c=mujiCtVk5QA697SD3d8V8BGmd91-8HlxCNHkolEA0Bo=',
+    'https://images.ctfassets.net/hrltx12pl8hq/28ECAQiPJZ78hxatLTa7Ts/2f695d869736ae3b0de3e56ceaca3958/free-nature-images.jpg?fit=fill&w=1200&h=630',
+    'https://cdn.stocksnap.io/img-thumbs/280h/enchanting-forest_1CFKSWRR5X.jpg'
+  ];
+  let currentIndex = 0;
+  setInterval(() => {
+    currentIndex = (currentIndex + 1) % images.length;
+    hero.style.backgroundImage = `url('${images[currentIndex]}')`;
+  }, 5000);
 
   // Background color changer (optional)
   const colors = ["#f5f5dc", "#f0f8ff", "#faf0e6", "#ffe4e1", "#e0ffff"];
