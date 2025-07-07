@@ -1,40 +1,265 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>John Doe - Home</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dynamic Bulb Cursor Website</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+      transition: background 2s ease;
+      cursor: none;
+      background: #f0f8ff;
+    }
+
+    header {
+      background: rgba(0, 0, 0, 0.5);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #333;
+      min-width: 120px;
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: white;
+      padding: 10px 15px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .hero {
+      height: 100vh;
+      background: url('https://source.unsplash.com/random/1920x1080') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3em;
+      margin: 0;
+    }
+
+    .section {
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .services {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .service-card {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      width: 250px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .service-card img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    footer {
+      background: #111;
+      color: #aaa;
+      padding: 20px 10px;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .services {
+        flex-direction: column;
+      }
+    }
+
+    /* Bulb Cursor Styles */
+    .custom-cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      font-size: 32px;
+      z-index: 9999;
+      mix-blend-mode: difference;
+      transition: transform 0.1s ease;
+    }
+
+    .ripple {
+      position: fixed;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 255, 0, 0.8), rgba(255, 255, 0, 0) 70%);
+      width: 200px;
+      height: 200px;
+      pointer-events: none;
+      transform: translate(-50%, -50%) scale(0);
+      animation: ripple-animation 0.8s ease-out forwards;
+      z-index: 9998;
+    }
+
+    @keyframes ripple-animation {
+      0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
+      }
+    }
+  </style>
 </head>
 <body>
-  <nav class="topnav">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
+
+<header>
+  <div>My Cool Website</div>
+  <nav class="navbar">
+    <a href="#">Home</a>
+    <a href="#about">About</a>
     <div class="dropdown">
-      <button class="dropbtn">Services</button>
+      <a href="#">Services ▾</a>
       <div class="dropdown-content">
-        <a href="services.html#leadgen">Lead Generation</a>
-        <a href="services.html#analytics">Analytics</a>
-        <a href="services.html#research">Market Research</a>
+        <a href="#">Web Design</a>
+        <a href="#">Marketing</a>
+        <a href="#">SEO</a>
       </div>
     </div>
-    <a href="resume.html">Resume</a>
-    <a href="contact.html">Contact</a>
   </nav>
+</header>
 
-  <header class="hero" id="dynamic-hero">
-    <div class="overlay">
-      <h1>John Doe</h1>
-      <p>Marketing & Demand Generation Expert</p>
+<section class="hero">
+  <h1>Welcome to My Cool Website</h1>
+  <p>Enjoy stunning visuals & awesome content!</p>
+</section>
+
+<section class="section" id="about">
+  <h2>About Us</h2>
+  <p>This is a sample dynamic website using free online images from Unsplash.</p>
+</section>
+
+<section class="section">
+  <h2>Our Services</h2>
+  <div class="services">
+    <div class="service-card">
+      <img src="https://source.unsplash.com/featured/?webdesign" alt="Web Design">
+      <h3>Web Design</h3>
+      <p>Creative and modern website design solutions.</p>
     </div>
-  </header>
+    <div class="service-card">
+      <img src="https://source.unsplash.com/featured/?marketing" alt="Marketing">
+      <h3>Marketing</h3>
+      <p>Grow your business with our expert marketing strategies.</p>
+    </div>
+    <div class="service-card">
+      <img src="https://source.unsplash.com/featured/?seo" alt="SEO">
+      <h3>SEO</h3>
+      <p>Boost your website traffic with powerful SEO techniques.</p>
+    </div>
+  </div>
+</section>
 
-  <footer>
-    <p>© 2025 John Doe. All rights reserved.</p>
-  </footer>
+<footer>
+  © 2025 My Cool Website. All rights reserved.
+</footer>
 
-  <script src="script.js"></script>
+<!-- Bulb Cursor -->
+<div class="custom-cursor" id="cursor">💡</div>
+
+<script>
+  const cursor = document.getElementById('cursor');
+
+  // Move Cursor
+  document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+
+  // Ripple Effect on Click
+  document.addEventListener('click', (e) => {
+    const ripple = document.createElement('div');
+    ripple.classList.add('ripple');
+    ripple.style.left = e.clientX + 'px';
+    ripple.style.top = e.clientY + 'px';
+    document.body.appendChild(ripple);
+
+    setTimeout(() => {
+      ripple.remove();
+    }, 800);
+  });
+
+  // ✨ Cursor Glow on Hover (Yellow Bulb)
+  const hoverTargets = document.querySelectorAll('a, button, .service-card, .dropdown-content a');
+  hoverTargets.forEach(item => {
+    item.addEventListener('mouseenter', () => {
+      cursor.textContent = '🌟';
+    });
+    item.addEventListener('mouseleave', () => {
+      cursor.textContent = '💡';
+    });
+  });
+
+  // ✨ Cursor Changes to Blue Bulb while Scrolling
+  let isScrolling;
+  window.addEventListener('scroll', () => {
+    cursor.textContent = '↕️';
+    clearTimeout(isScrolling);
+    isScrolling = setTimeout(() => {
+      cursor.textContent = '💡';
+    }, 500); // reset after 500ms of no scroll
+  });
+
+  // Background color changer (optional)
+  const colors = ["#f5f5dc", "#f0f8ff", "#faf0e6", "#ffe4e1", "#e0ffff"];
+  setInterval(() => {
+    document.body.style.background = colors[Math.floor(Math.random() * colors.length)];
+  }, 5000);
+</script>
+
 </body>
 </html>
-
-
