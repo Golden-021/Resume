@@ -1,16 +1,17 @@
-const hero = document.getElementById("dynamic-hero");
-const backgrounds = [
-  "assets/bg1.jpg",
-  "assets/bg2.jpg",
-  "assets/bg3.jpg"
+<script>
+// Auto Image Slider for Hero Section
+const hero = document.querySelector('.hero');
+const images = [
+  'https://source.unsplash.com/random/1920x1080?nature',
+  'https://source.unsplash.com/random/1920x1080?city',
+  'https://source.unsplash.com/random/1920x1080?technology',
+  'https://source.unsplash.com/random/1920x1080?business'
 ];
 
-let index = 0;
+let currentIndex = 0;
 
-function changeBackground() {
-  hero.style.backgroundImage = `url('${backgrounds[index]}')`;
-  index = (index + 1) % backgrounds.length;
-}
-
-setInterval(changeBackground, 5000); // change every 5 seconds
-changeBackground(); // Initial call
+setInterval(() => {
+  currentIndex = (currentIndex + 1) % images.length;
+  hero.style.backgroundImage = `url('${images[currentIndex]}')`;
+}, 5000); // Change every 5 seconds
+</script>
